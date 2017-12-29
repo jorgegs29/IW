@@ -11,7 +11,8 @@
     <title>{{ config('app.name', 'Steam') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <!-- Quitar para usar bootstrap -->
+    <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
 
     <!-- Bootstrap -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -41,7 +42,7 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         &nbsp;
-                        <li><a href="">Noticias</a></li>
+                        <li><a href="{{ route('noticias.index') }}">Noticias</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -80,7 +81,8 @@
     </div>
 
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    <!-- Quitar para usar bootstrap -->
+    <!--<script src="{{ asset('js/app.js') }}"></script>-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>

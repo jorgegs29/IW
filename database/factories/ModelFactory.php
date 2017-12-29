@@ -1,5 +1,7 @@
 <?php
 
+use Faker as Faker;
+
 /*
 |--------------------------------------------------------------------------
 | Model Factories
@@ -20,5 +22,16 @@ $factory->define(App\User::class, function (Faker\Generator $faker) {
         'email' => $faker->unique()->safeEmail,
         'password' => $password ?: $password = bcrypt('secret'),
         'remember_token' => str_random(10),
+    ];
+});
+
+$factory->define(App\Noticia::class, function (Faker\Generator $faker) {
+    $faker=Faker\Factory::create('es_ES');
+
+    return [
+        'titulo' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'descripcion' => $faker->text($maxNbChars = 100),
+        'juego' => $faker->word,
+        'idUsuario' => $faker->numberBetween($min = 1, $max = 1)
     ];
 });

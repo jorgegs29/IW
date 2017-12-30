@@ -15,7 +15,7 @@
     <!--<link href="{{ asset('css/app.css') }}" rel="stylesheet">-->
 
     <!-- Bootstrap -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{ URL::to('css/bootstrap.min.css') }}" rel="stylesheet">
 
 </head>
 <body>
@@ -85,7 +85,7 @@
     <!--<script src="{{ asset('js/app.js') }}"></script>-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="{{ URL::to('js/bootstrap.min.js') }}"></script>
 
 </body>
 </html>

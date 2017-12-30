@@ -6,6 +6,10 @@
         <h1>Noticias</h1>
     </div>
 
+    @if (Session::has('message'))
+	<div class="alert alert-success">{{ Session::get('message') }}</div>
+    @endif  
+
     @foreach ($noticias as $noticia)
     <div class="panel panel-info">
         <div class="panel-heading">

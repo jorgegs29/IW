@@ -5,9 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Noticia;
 use View;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Auth;
+use Session;
+use Redirect;
 
 class NoticiaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -19,7 +30,7 @@ class NoticiaController extends Controller
         //return View::make('noticias')->with('noticias', $noticias);
 
         $noticias = Noticia::paginate(10);
-        return View('noticias', ['noticias' => $noticias]);
+        return View('noticias/noticias', ['noticias' => $noticias]);
     }
 
     /**
@@ -29,7 +40,7 @@ class NoticiaController extends Controller
      */
     public function create()
     {
-        //
+        return view('noticias.create');
     }
 
     /**
@@ -40,7 +51,33 @@ class NoticiaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // validate
+        $rules = array(
+            'titulo'       => 'required',
+            'descripcion'      => 'required',
+            'juego' => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('noticias/create')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $noticia = new Noticia;
+            $noticia->titulo    = Input::get('titulo');
+            $noticia->descripcion   = Input::get('descripcion');
+            $noticia->juego     = Input::get('juego');
+            $noticia->idUsuario = Auth::id();
+            $noticia->save();
+
+            // redirect
+            Session::flash('message', 'Tu noticia ha sido publicada con exito !!');
+            return Redirect::to('noticias');
+        }
     }
 
     /**
@@ -62,7 +99,8 @@ class NoticiaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $noticia = Noticia::find($id);
+        return View::make('noticias/edit')->with('noticia', $noticia);
     }
 
     /**
@@ -74,7 +112,34 @@ class NoticiaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'titulo'       => 'required',
+            'descripcion'      => 'required',
+            'juego' => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::to('noticias/' . $id . '/edit')
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $noticia = Noticia::find($id);
+            $noticia->titulo    = Input::get('titulo');
+            $noticia->descripcion   = Input::get('descripcion');
+            $noticia->juego     = Input::get('juego');
+            $noticia->idUsuario = Auth::id();
+            $noticia->save();
+
+            // redirect
+            Session::flash('message', 'Tu noticia ha sido modificada con exito !!');
+            return Redirect::to('noticias');
+        }
     }
 
     /**
@@ -85,6 +150,12 @@ class NoticiaController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // delete
+        $noticia = Noticia::find($id);
+        $noticia->delete();
+
+        // redirect
+        Session::flash('message', 'Tu noticia ha sido eliminada');
+        return Redirect::to('noticias');
     }
 }

@@ -20,3 +20,7 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::resource('noticias', 'NoticiaController');
+
+Route::get('/perfil', 'PerfilController@index')->name('perfil.index');
+
+Route::get('/perfil/noticias', 'PerfilController@noticias')->name('perfil.noticias');

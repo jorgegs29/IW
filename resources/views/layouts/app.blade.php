@@ -43,6 +43,7 @@
                     <ul class="nav navbar-nav">
                         &nbsp;
                         <li><a href="{{ route('noticias.index') }}">Noticias</a></li>
+                        <li><a href="{{ route('foro.index') }}">Foro</a></li>
                         @if (Auth::check())
                         <li><a href="{{ route('perfil.index') }}">Perfil</a></li>
                         @endif

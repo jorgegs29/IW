@@ -35,3 +35,23 @@ $factory->define(App\Noticia::class, function (Faker\Generator $faker) {
         'idUsuario' => $faker->numberBetween($min = 1, $max = 1)
     ];
 });
+
+$factory->define(App\Post::class, function (Faker\Generator $faker) {
+    $faker=Faker\Factory::create('es_ES');
+
+    return [
+        'titulo' => $faker->sentence($nbWords = 6, $variableNbWords = true),
+        'idJuego' => $faker->numberBetween($min = 1, $max = 1),
+        'idUsuario' => $faker->numberBetween($min = 1, $max = 1)
+    ];
+});
+
+$factory->define(App\Mensaje::class, function (Faker\Generator $faker) {
+    $faker=Faker\Factory::create('es_ES');
+
+    return [
+        'contenido' => $faker->text($maxNbChars = 100),
+        'idPost' => $faker->numberBetween($min = 1, $max = 20),
+        'idUsuario' => $faker->numberBetween($min = 1, $max = 1)
+    ];
+});

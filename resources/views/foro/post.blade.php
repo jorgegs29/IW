@@ -9,12 +9,13 @@
             <div class="panel-body">
                 @foreach ($posts as $clave => $post)
                     <ul class="list-group">
-                        <a href="" style="text-decoration:none; color: inherit">
+                        <a href="{{route('posts.show',$post->id)}}" style="text-decoration:none; color: inherit">
                             <li class="list-group-item"><span class="badge">{{$numMensajes[$clave]}}</span>
-                            <span class="glyphicon glyphicon-envelope"></span> {{$post->titulo}}</li>
+                            <span class="glyphicon glyphicon-envelope"></span> &nbsp {{$post->titulo}}</li>
                         </a>
                     </ul>
                 @endforeach
+                {{ $posts->links() }}
             </div>
         </div>
     </div>

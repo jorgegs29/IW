@@ -1,10 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-use View;
-use DB;
 
 use Illuminate\Http\Request;
+use View;
+use DB;
 
 class ForoController extends Controller
 {
@@ -14,16 +14,14 @@ class ForoController extends Controller
     }
 
     public function show($id) {
-        //$posts = DB::table('posts')->select('*')->where('idJuego', $id)->paginate(10);
-        $posts = DB::table('posts')->select('*')->where('idJuego', $id)->get();
+        $posts = DB::table('posts')->select('*')->where('idJuego', $id)->paginate(10);
 
         $numMensajes = array();
         foreach($posts as $post) {
             $aux = DB::table('mensajes')->where('idPost', $post->id)->count();
             array_push($numMensajes, $aux);
         }
-        
+
         return View::make('foro/post')->with(compact('posts', 'numMensajes'));
-        //return View::make('foro/post')->with('posts', $posts);
     }
 }

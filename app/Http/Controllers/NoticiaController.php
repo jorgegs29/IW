@@ -26,9 +26,6 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        //$noticias = Noticia::all();
-        //return View::make('noticias')->with('noticias', $noticias);
-
         $noticias = Noticia::paginate(10);
         return View('noticias/noticias', ['noticias' => $noticias]);
     }

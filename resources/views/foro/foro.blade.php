@@ -10,7 +10,7 @@
                 <ul class="list-group">
                     <a href="{{route('foro.post',$idJuego)}}" style="text-decoration:none; color: inherit">
                         <li class="list-group-item"><span class="badge">14</span>
-                        <span class="glyphicon glyphicon-tower"></span> Cras justo odio</li>
+                        <span class="glyphicon glyphicon-tower"></span> &nbsp Cras justo odio</li>
                     </a>
                 </ul>
             </div>

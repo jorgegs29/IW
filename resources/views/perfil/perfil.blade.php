@@ -24,26 +24,26 @@
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> Mensajes</button>
+                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> &nbsp Mensajes</button>
                         </div>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-success">
-                            <span class="glyphicon glyphicon-knight" aria-hidden="true"></span> Juegos</button>
+                            <span class="glyphicon glyphicon-knight" aria-hidden="true"></span> &nbsp Juegos</button>
                         </div>
                         <div class="btn-group" role="group">
                             <a href="{{ route('perfil.noticias') }}" class="btn btn-warning" >
-                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> Noticias</a>
+                            <span class="glyphicon glyphicon-tags" aria-hidden="true"></span> &nbsp Noticias</a>
                         </div>
                     </div>
                     <br>
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-success">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir Juego</button>
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp Añadir Juego</button>
                         </div>
                         <div class="btn-group" role="group">
                             <a href="{{ route('noticias.create') }}" class="btn btn-warning" >
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Añadir Noticia</a>
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp Añadir Noticia</a>
                         </div>
                     </div>
                 </div>

@@ -152,7 +152,7 @@ class NoticiaController extends Controller
         $noticia->delete();
 
         // redirect
-        Session::flash('message', 'Tu noticia ha sido eliminada');
+        Session::flash('message', 'Tu noticia ha sido eliminada.');
         return Redirect::to('noticias');
     }
 }

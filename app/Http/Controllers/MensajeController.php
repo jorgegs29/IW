@@ -13,6 +13,12 @@ use App\Mensaje;
 
 class MensajeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -86,7 +92,8 @@ class MensajeController extends Controller
      */
     public function edit($id)
     {
-        //
+        $mensaje = Mensaje::find($id);
+        return View::make('foro/editMensaje')->with('mensaje', $mensaje);
     }
 
     /**
@@ -98,7 +105,29 @@ class MensajeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        // validate
+        // read more on validation at http://laravel.com/docs/validation
+        $rules = array(
+            'contenido'       => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $mensaje = Mensaje::find($id);
+            $mensaje->contenido = Input::get('contenido');
+            $mensaje->save();
+
+            // redirect
+            Session::flash('message', 'Tu mensaje ha sido modificado con exito !!');
+            return Redirect::to('perfil/mensajes');
+        }
     }
 
     /**
@@ -109,6 +138,12 @@ class MensajeController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // delete
+        $mensaje = Mensaje::find($id);
+        $mensaje->delete();
+
+        // redirect
+        Session::flash('message', 'Tu mensaje ha sido eliminado.');
+        return Redirect::back();
     }
 }

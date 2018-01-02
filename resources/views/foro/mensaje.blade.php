@@ -36,17 +36,21 @@
                         {{$errors->first()}}
                     </div>
                 @endif
-                <div class="well">
-                    <h2>Nuevo Mensaje</h2>
-                    {{ Form::open(array('url' => 'mensajes')) }}
-                        <div class="form-group">
-                            {{ Form::label('contenido', 'Contenido') }}
-                            {{ Form::textarea('contenido', Input::old('contenido'), array('class' => 'form-control')) }}
-                        </div>
-                            {!! Form::hidden('idPost',  $post->id) !!}                            
-                            {{ Form::submit('Publicar Mensaje', array('class' => 'btn btn-success')) }}
-                    {{ Form::close() }}
-                </div>
+
+                @if (Auth::check())
+                    <div class="well">
+                        <h2>Nuevo Mensaje</h2>
+                        {{ Form::open(array('url' => 'mensajes')) }}
+                            <div class="form-group">
+                                {{ Form::label('contenido', 'Contenido') }}
+                                {{ Form::textarea('contenido', Input::old('contenido'), array('class' => 'form-control')) }}
+                            </div>
+                                {!! Form::hidden('idPost',  $post->id) !!}                            
+                                {{ Form::submit('Publicar Mensaje', array('class' => 'btn btn-success')) }}
+                        {{ Form::close() }}
+                    </div>
+                @endif
+                
             </div>
         </div>
     </div>

@@ -23,8 +23,8 @@
                 <div class="well">
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-primary">
-                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> &nbsp Mensajes</button>
+                            <a href="{{ route('perfil.mensajes') }}" class="btn btn-primary">
+                            <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> &nbsp Mensajes</a>
                         </div>
                         <div class="btn-group" role="group">
                             <button type="button" class="btn btn-success">

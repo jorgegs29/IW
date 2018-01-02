@@ -25,6 +25,8 @@ Route::get('/perfil', 'PerfilController@index')->name('perfil.index');
 
 Route::get('/perfil/noticias', 'PerfilController@noticias')->name('perfil.noticias');
 
+Route::get('/perfil/mensajes', 'PerfilController@mensajes')->name('perfil.mensajes');
+
 Route::get('/foro', 'ForoController@index')->name('foro.index');
 
 Route::get('/foro/post/{id}', 'ForoController@show')->name('foro.post');

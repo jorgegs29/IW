@@ -29,4 +29,13 @@ class PerfilController extends Controller
 
         return View('perfil/noticiasUsuario', ['noticias' => $noticias]);
     }
+
+    public function mensajes() {
+        $mensajes = DB::table('mensajes')
+        ->select('*')
+        ->where('idUsuario', Auth::id())
+        ->get();
+
+        return View('perfil/mensajesUsuario', ['mensajes' => $mensajes]);
+    }
 }

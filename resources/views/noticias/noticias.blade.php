@@ -11,7 +11,7 @@
     @endif  
 
     @foreach ($noticias as $noticia)
-    <div class="panel panel-info">
+    <div class="panel panel-primary">
         <div class="panel-heading">
             <h3 class="panel-title"><big>{{$noticia->titulo}}</big></h3>
             <h5>{{$noticia->created_at}}</h5>

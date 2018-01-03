@@ -38,4 +38,13 @@ class PerfilController extends Controller
 
         return View('perfil/mensajesUsuario', ['mensajes' => $mensajes]);
     }
+
+    public function juegos() {
+        $juegos = DB::table('juegos')
+        ->select('*')
+        ->where('idUsuario', Auth::id())
+        ->get();
+
+        return View('perfil/juegosUsuario', ['juegos' => $juegos]);
+    }
 }

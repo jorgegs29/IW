@@ -112,8 +112,8 @@ class NoticiaController extends Controller
         // validate
         // read more on validation at http://laravel.com/docs/validation
         $rules = array(
-            'titulo'       => 'required',
-            'descripcion'      => 'required',
+            'titulo' => 'required',
+            'descripcion' => 'required',
             'juego' => 'required'
         );
 
@@ -121,23 +121,23 @@ class NoticiaController extends Controller
 
         // process the login
         if ($validator->fails()) {
-            return Redirect::to('noticias/' . $id . '/edit')
+            return Redirect::back()
                 ->withErrors($validator)
                 ->withInput(Input::except('password'));
         } else {
             // store
             $noticia = Noticia::find($id);
-            $noticia->titulo    = Input::get('titulo');
-            $noticia->descripcion   = Input::get('descripcion');
-            $noticia->juego     = Input::get('juego');
+            $noticia->titulo = Input::get('titulo');
+            $noticia->descripcion = Input::get('descripcion');
+            $noticia->juego = Input::get('juego');
             $noticia->idUsuario = Auth::id();
             $noticia->save();
 
             // redirect
             Session::flash('message', 'Tu noticia ha sido modificada con exito !!');
-            return Redirect::to('noticias');
+            return Redirect::to('perfil/noticias');
         }
-    }
+    } 
 
     /**
      * Remove the specified resource from storage.
@@ -153,6 +153,6 @@ class NoticiaController extends Controller
 
         // redirect
         Session::flash('message', 'Tu noticia ha sido eliminada.');
-        return Redirect::to('noticias');
+        return Redirect::to('perfil/noticias');
     }
 }

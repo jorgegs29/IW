@@ -6,6 +6,14 @@
         <h1>Editar Mensaje</h1>
     </div>
     <div class="well">
+        @if($errors->any())
+            <div class="alert alert-danger" role="alert">
+                <span class="glyphicon glyphicon-exclamation-sign" aria-hidden="true"></span>
+                <span class="sr-only">Error:</span>
+                {{$errors->first()}}
+            </div>
+        @endif
+
         {{ Form::model($mensaje, array('route' => array('mensajes.update', $mensaje->id), 'method' => 'PUT')) }}
             <div class="form-group">
                 {{ Form::label('contenido', 'Contenido') }}

@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="page-header">
-        <h1>Editar Noticia: <small>{{$noticia->titulo}}</small></h1>
+        <h1>Editar Juego: <small>{{$juego->titulo}}</small></h1>
     </div>
     <div class="well">
         @if($errors->any())
@@ -14,7 +14,7 @@
             </div>
         @endif
 
-        {{ Form::model($noticia, array('route' => array('noticias.update', $noticia->id), 'method' => 'PUT')) }}
+        {{ Form::model($juego, array('route' => array('juegos.update', $juego->id), 'method' => 'PUT')) }}
             <div class="form-group">
                 {{ Form::label('titulo', 'Titulo') }}
                 {{ Form::text('titulo', null, array('class' => 'form-control')) }}
@@ -24,10 +24,18 @@
                 {{ Form::textarea('descripcion', null, array('class' => 'form-control')) }}
             </div>
             <div class="form-group">
-                {{ Form::label('juego', 'Juego') }}
-                {{ Form::text('juego', null, array('class' => 'form-control')) }}
+                {{ Form::label('precio', 'Precio') }}
+                {{ Form::number('precio', null, array('class' => 'form-control')) }}
             </div>
-            {{ Form::submit('Editar Noticia', array('class' => 'btn btn-primary')) }}
+            <div class="form-group">
+                {{ Form::label('imagen', 'Imagen') }}
+                {{ Form::text('imagen', null, array('class' => 'form-control')) }}
+            </div>
+            <div class="form-group">
+                {{ Form::label('idCategoria', 'Categoria') }}
+                {!! Form::select('idCategoria', $categorias->pluck('nombre','id'), null, ['class' => 'form-control']) !!}
+            </div>
+            {{ Form::submit('Editar Juego', array('class' => 'btn btn-primary')) }}
         {{ Form::close() }}
     </div>
 </div>

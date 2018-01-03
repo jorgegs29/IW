@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class PostsTableSeeder extends Seeder
+class JuegosTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,8 +12,8 @@ class PostsTableSeeder extends Seeder
     public function run()
     {
         if (App::environment() !== 'production') {
-	        DB::table('posts')->delete();
-    		factory(App\Post::class, 40)->create();	
+	        DB::table('juegos')->delete();
+    		factory(App\Juego::class, 20)->create();	
     	}
     }
 }

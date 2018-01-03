@@ -27,8 +27,8 @@
                             <span class="glyphicon glyphicon-comment" aria-hidden="true"></span> &nbsp Mensajes</a>
                         </div>
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-success">
-                            <span class="glyphicon glyphicon-knight" aria-hidden="true"></span> &nbsp Juegos</button>
+                            <a href="{{ route('perfil.juegos') }}" class="btn btn-success">
+                            <span class="glyphicon glyphicon-knight" aria-hidden="true"></span> &nbsp Juegos</a>
                         </div>
                         <div class="btn-group" role="group">
                             <a href="{{ route('perfil.noticias') }}" class="btn btn-warning" >
@@ -38,8 +38,8 @@
                     <br>
                     <div class="btn-group btn-group-justified" role="group" aria-label="...">
                         <div class="btn-group" role="group">
-                            <button type="button" class="btn btn-success">
-                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp Añadir Juego</button>
+                            <a href="{{ route('juegos.create') }}" class="btn btn-success">
+                            <span class="glyphicon glyphicon-plus" aria-hidden="true"></span> &nbsp Añadir Juego</a>
                         </div>
                         <div class="btn-group" role="group">
                             <a href="{{ route('noticias.create') }}" class="btn btn-warning" >

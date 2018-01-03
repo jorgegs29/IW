@@ -86,6 +86,7 @@
                     <a href="{{ route('home') }}">Inicio</a>
                     <a href="{{ route('noticias.index') }}">Noticias</a>
                     <a href="{{ route('foro.index') }}">Foro</a>
+                    <a href="{{ route('juegos.index') }}">Juegos</a>
                     @if (Auth::check())
                         <a href="{{ route('perfil.index') }}">Perfil</a>
                     @endif

@@ -41,7 +41,7 @@ $factory->define(App\Post::class, function (Faker\Generator $faker) {
 
     return [
         'titulo' => $faker->sentence($nbWords = 6, $variableNbWords = true),
-        'idJuego' => $faker->numberBetween($min = 1, $max = 1),
+        'idJuego' => $faker->numberBetween($min = 1, $max = 20),
         'idUsuario' => $faker->numberBetween($min = 1, $max = 1)
     ];
 });
@@ -51,7 +51,20 @@ $factory->define(App\Mensaje::class, function (Faker\Generator $faker) {
 
     return [
         'contenido' => $faker->text($maxNbChars = 100),
-        'idPost' => $faker->numberBetween($min = 1, $max = 20),
+        'idPost' => $faker->numberBetween($min = 1, $max = 40),
+        'idUsuario' => $faker->numberBetween($min = 1, $max = 1)
+    ];
+});
+
+$factory->define(App\Juego::class, function (Faker\Generator $faker) {
+    $faker=Faker\Factory::create('es_ES');
+
+    return [
+        'titulo' => $faker->text($maxNbChars = 15),
+        'descripcion' => $faker->text($maxNbChars = 200),
+        'precio' => $faker->numberBetween($min = 1, $max = 70),
+        'imagen' => '/images/imgjuego.jpg',
+        'idCategoria' => $faker->numberBetween($min = 1, $max = 12),
         'idUsuario' => $faker->numberBetween($min = 1, $max = 1)
     ];
 });

@@ -38,3 +38,5 @@ Route::resource('posts', 'PostController');
 Route::resource('mensajes', 'MensajeController');
 
 Route::resource('juegos', 'JuegoController');
+
+Route::post('/juegos/search', 'JuegoController@search')->name('juegos.search');

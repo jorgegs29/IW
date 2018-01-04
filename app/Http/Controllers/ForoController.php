@@ -10,7 +10,7 @@ use App\Juego;
 class ForoController extends Controller
 {
     public function index() {
-        $juegos = Juego::paginate(15);
+        $juegos = Juego::orderBy('id', 'DESC')->paginate(15);
         $numPosts = array();
         foreach($juegos as $juego) {
             $aux = DB::table('posts')->where('idJuego', $juego->id)->count();
@@ -20,7 +20,7 @@ class ForoController extends Controller
     }
 
     public function show($id) {
-        $posts = DB::table('posts')->select('*')->where('idJuego', $id)->paginate(10);
+        $posts = DB::table('posts')->select('*')->where('idJuego', $id)->orderBy('id', 'DESC')->paginate(10);
         $juego = Juego::find($id);
         $numMensajes = array();
         foreach($posts as $post) {

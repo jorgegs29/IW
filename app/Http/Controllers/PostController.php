@@ -7,9 +7,20 @@ use View;
 use DB;
 use App\Post;
 use App\User;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Input;
+use Auth;
+use Session;
+use Redirect;
 
 class PostController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth')->except('show');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +49,30 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+                        // validate
+        $rules = array(
+            'titulo'       => 'required'
+        );
+
+        $validator = Validator::make(Input::all(), $rules);
+
+        // process the login
+        if ($validator->fails()) {
+            return Redirect::back()
+                ->withErrors($validator)
+                ->withInput(Input::except('password'));
+        } else {
+            // store
+            $post = new Post;
+            $post->titulo = Input::get('titulo');
+            $post->idJuego = $request->input('idJuego');
+            $post->idUsuario = Auth::id();
+            $post->save();
+
+            // redirect
+            Session::flash('message', 'Tu post ha sido creado con exito !!');
+            return Redirect::back();
+        }
     }
 
     /**

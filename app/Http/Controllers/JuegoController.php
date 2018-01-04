@@ -12,13 +12,14 @@ use Illuminate\Support\Facades\Input;
 use Auth;
 use Session;
 use Redirect;
+use DB;
 
 class JuegoController extends Controller
 {
 
     public function __construct()
     {
-        $this->middleware('auth')->except('index','show');
+        $this->middleware('auth')->except('index','show','search');
     }
 
     /**
@@ -28,7 +29,7 @@ class JuegoController extends Controller
      */
     public function index()
     {
-        $juegos = Juego::paginate(10);
+        $juegos = Juego::orderBy('id', 'DESC')->paginate(10);
         $categorias = array();
         foreach($juegos as $juego) {
             $categoria = Categoria::find($juego->idCategoria);
@@ -174,5 +175,16 @@ class JuegoController extends Controller
         // redirect
         Session::flash('message', 'Tu juego ha sido eliminado.');
         return Redirect::back();
+    }
+
+    public function search(Request $request) {
+        $query = $request->input('search');
+        $juegos = DB::table('juegos')->where('titulo', 'LIKE', '%' . $query . '%')->paginate(10);
+        $categorias = array();
+        foreach($juegos as $juego) {
+            $categoria = Categoria::find($juego->idCategoria);
+            array_push($categorias, $categoria);
+        }
+        return View::make('juegos/juegos')->with(compact('juegos', 'categorias'));
     }
 }

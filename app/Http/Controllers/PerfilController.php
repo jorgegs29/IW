@@ -25,6 +25,7 @@ class PerfilController extends Controller
         $noticias = DB::table('noticias')
         ->select('*')
         ->where('idUsuario', Auth::id())
+        ->orderBy('id', 'DESC')
         ->get(); 
 
         return View('perfil/noticiasUsuario', ['noticias' => $noticias]);
@@ -34,6 +35,7 @@ class PerfilController extends Controller
         $mensajes = DB::table('mensajes')
         ->select('*')
         ->where('idUsuario', Auth::id())
+        ->orderBy('id', 'DESC')
         ->get();
 
         return View('perfil/mensajesUsuario', ['mensajes' => $mensajes]);
@@ -43,6 +45,7 @@ class PerfilController extends Controller
         $juegos = DB::table('juegos')
         ->select('*')
         ->where('idUsuario', Auth::id())
+        ->orderBy('id', 'DESC')
         ->get();
 
         return View('perfil/juegosUsuario', ['juegos' => $juegos]);

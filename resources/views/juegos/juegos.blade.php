@@ -3,17 +3,13 @@
 @section('content')
 <div class="container">
     <div class="page-header">
+        {!! Form::open(array('route' => 'juegos.search', 'class'=>'form navbar-form navbar-right searchform')) !!}
+            {!! Form::text('search', null, array('required', 'class'=>'form-control', 'placeholder'=>'Buscar Juego')) !!}
+            {!! Form::submit('Buscar', array('class'=>'btn btn-primary')) !!}
+        {!! Form::close() !!}
         <h1>Juegos</h1>
     </div>
     
-    <div class="input-group">
-        <input type="text" class="form-control" placeholder="Nombre del Juego" aria-describedby="basic-addon2">
-        <span class="input-group-btn">
-            <button class="btn btn-primary" type="button">Buscar</button>
-        </span>
-    </div>
-    <br>
-
     @if (Session::has('message'))
 	<div class="alert alert-success">{{ Session::get('message') }}</div>
     @endif  

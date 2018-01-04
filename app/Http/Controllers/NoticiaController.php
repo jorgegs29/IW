@@ -26,7 +26,7 @@ class NoticiaController extends Controller
      */
     public function index()
     {
-        $noticias = Noticia::paginate(10);
+        $noticias = Noticia::orderBy('id', 'DESC')->paginate(10);
         return View('noticias/noticias', ['noticias' => $noticias]);
     }
 
